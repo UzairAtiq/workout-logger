@@ -1,5 +1,8 @@
 {
   "appId": "com.cinematiclogger.app",
   "appName": "Logger",
-  "webDir": "Cinematicworkoutlogger/dist"
+  "webDir": "Cinematicworkoutlogger/dist",
+  "android": {
+    "path": "../CinematicWorkoutLogger-Android/android"
+  }
 }
