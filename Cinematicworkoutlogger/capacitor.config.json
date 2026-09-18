@@ -1,0 +1,8 @@
+{
+  "appId": "com.cinematiclogger.app",
+  "appName": "Logger",
+  "webDir": "dist",
+  "android": {
+    "path": "../android"
+  }
+}
