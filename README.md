@@ -1,126 +1,96 @@
-# Cinematic Workout Logger
+# Workout Logger
 
+Workout Logger is a fitness tracking platform designed for rapid workout logging during intense training sessions. It replaces standard virtual keyboards with an intuitive digit-by-digit vertical slider for recording weights and repetitions. The repository is organized into two primary folders: the web application and the native Android wrapper project.
 
-Cinematic Workout Logger is a minimalist fitness tracking application built for fast, friction-free logging during training sessions. It replaces standard virtual keyboards with an intuitive digit-by-digit vertical slider interface for weight and repetition entry. Lifters can rapidly record sets, track routine progress, and inspect historical performance metrics within a sleek, distraction-free environment.
-
-The platform consists of a responsive web client and a native Android application wrapped with Capacitor. React, TypeScript, and Vite drive the core frontend with hardware-accelerated animations and touch controls. Capacitor bridges the web build to Android, providing offline data storage and tactile haptic feedback.
-
-## Features
-
-- Gesture-Driven Input Canvas: Vertical digit wheel controls for fast, precise entry of weights and repetitions without bringing up system keyboards.
-- Guided Step-by-Step Flow: Structured sequence covering exercise naming, weight selection, rep counts, and set confirmation.
-- Comprehensive Workout History: Chronological session tracking with detailed breakdowns of exercises, sets, weights, and total volume.
-- Native Haptic Feedback: Integrated device vibration cues for tactile confirmation on completed steps and key actions.
-- Offline Data Persistence: Client-side storage powered by Capacitor Preferences for instant load times and data privacy.
-- Cinematic Dark Interface: Cyberpunk-inspired dark aesthetic featuring dot-matrix backgrounds, glowing status indicators, and smooth state transitions.
-
-## Architecture and Project Structure
+## Repository Structure
 
 ```
 workout-logger/
-├── Cinematicworkoutlogger/                 # React and Vite web client source
-│   ├── src/                                # Application source code
-│   │   ├── app/                            # Components and main view logic
-│   │   ├── services/                       # Storage and persistence services
-│   │   ├── styles/                         # Global styles and Tailwind configuration
-│   │   └── types/                          # TypeScript data models
-│   ├── capacitor.config.json               # Capacitor bridge configuration
-│   ├── vercel.json                         # Vercel deployment configuration
-│   ├── dist/                               # Compiled production web assets
-│   └── package.json                        # Web and Capacitor dependencies
-└── android/                                # Android native Gradle project
-    ├── app/                                # Android application module and manifest
-    └── gradlew                             # Gradle wrapper executable script
+├── Cinematicworkoutlogger/     # React and Vite web client source code
+└── android/                    # Capacitor Android native Gradle project
 ```
 
-## Technology Stack
+The codebase is split into two dedicated directories:
+- `Cinematicworkoutlogger`: The React and Vite web client containing the user interface, state management, and gesture input logic.
+- `android`: The native Android project powered by Capacitor that packages the web client into an installable Android APK.
 
-- Frontend Framework: React 18 with TypeScript
-- Build Tool: Vite
-- Styling: Tailwind CSS
-- Animation and Interactions: Motion and hardware-accelerated CSS transforms
-- Mobile Bridge: Capacitor 8
-- Native Storage: Capacitor Preferences API
-- UI Components and Icons: Radix UI, Lucide React, Sonner Toaster
-- Native Platform: Android SDK with Gradle
+---
 
-## Prerequisites
+## 1. Web Application (`Cinematicworkoutlogger`)
 
-- Node.js version 18.x or higher installed on your development machine
-- npm package manager version 9.x or higher
-- Java Development Kit (JDK) 17 or higher (for Android builds)
-- Android SDK and platform tools configured in your environment (for Android builds)
-- Android Studio (optional, for visual native inspection and device deployment)
+### What It Does
 
-## Setup and Installation
+The `Cinematicworkoutlogger` folder contains the core web application built with React, TypeScript, Vite, and Tailwind CSS. It provides an interface for logging workout sets, selecting exercises, tracking repetitions, and reviewing chronological session history. The client uses hardware-accelerated animations, responsive touch gesture detection, and local storage persistence via Capacitor Preferences.
 
-### 1. Web Application Setup
+### How to Set It Up
 
-Setting up the web application requires installing dependencies within the web client directory and starting the Vite development server. This allows you to preview and modify the interface directly in your browser with hot module replacement enabled.
+Make sure you have Node.js 18 or higher installed on your system before proceeding. Navigate to the web folder, install the required packages, and run the development server.
 
 ```bash
 # Navigate to the web application directory
 cd Cinematicworkoutlogger
 
-# Install project dependencies
+# Install dependencies
 npm install
 
 # Start the local development server
 npm run dev
 ```
 
-The application will be accessible at `http://localhost:5173`.
+The web application will be accessible at `http://localhost:5173`.
 
-### 2. Building the Web Application for Production
+### How to Build for Production
 
-Compiling the frontend produces optimized static files inside the `dist` directory. These assets are used both for web deployment and for synchronizing with the Capacitor Android project.
+Building the project creates an optimized static asset bundle inside the `dist` directory. This bundle can be hosted on static web servers or synchronized with the Android wrapper.
 
 ```bash
 # Navigate to the web application directory
 cd Cinematicworkoutlogger
 
-# Generate the production build
+# Compile production build
 npm run build
 ```
 
-### 3. Synchronizing with Capacitor
+---
 
-After compiling the web application, synchronize the built assets to the native Android directory using Capacitor CLI commands directly from the web client directory.
+## 2. Android Native Application (`android`)
+
+### What It Is For
+
+The `android` folder contains the native Android wrapper project configured using Capacitor 8. It packages the compiled web application into an installable Android APK, enabling native device capabilities such as tactile haptic feedback and local preference storage. This module allows the app to function as a standalone mobile application without requiring browser navigation bars.
+
+### How to Set It Up and Build the APK
+
+Before compiling the Android project, ensure you have Java Development Kit (JDK) 17 and Android SDK installed. First build the web application, synchronize the web assets into the Android folder, and then compile the APK with Gradle.
 
 ```bash
-# Navigate to the web application directory
+# Step 1: Build web assets and sync to Android
 cd Cinematicworkoutlogger
-
-# Sync web assets and plugins to the native Android project
+npm run build
 npx cap sync android
-```
 
-### 4. Building the Android APK
+# Step 2: Navigate to the android directory
+cd ../android
 
-The native Android project is compiled using the Gradle wrapper included in the repository. Ensure your Android SDK and Java environment variables are properly set before initiating the build process.
-
-```bash
-# Navigate to the Android native directory
-cd android
-
-# Ensure execute permissions on the wrapper script
+# Step 3: Grant executable permissions and compile debug APK
 chmod +x ./gradlew
-
-# Build a debug APK
 ./gradlew assembleDebug
 ```
 
-Upon successful compilation, the resulting debug APK binary will be available at:
-`android/app/build/outputs/apk/debug/app-debug.apk`
+### APK Output Location
 
-## Data Storage and Persistence
+After the Gradle build completes successfully, the compiled debug APK binary will be available at:
 
-All workout sessions, sets, and exercise data are managed locally on the user device via the Capacitor Preferences API. This ensures full data privacy and enables complete offline functionality without requiring an internet connection or external user authentication.
+```
+android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+---
 
 ## Deployment
 
-The web client includes configuration for instant deployment on static hosting providers such as Vercel. The `vercel.json` file inside `Cinematicworkoutlogger` is pre-configured to build the client and serve the resulting `dist` bundle.
+The web client can be deployed directly to cloud providers such as Vercel. The `vercel.json` configuration file inside `Cinematicworkoutlogger` is pre-configured to build the frontend and serve the compiled static output automatically.
 
 ## License
 
-This project is distributed under the standard project license. Review the LICENSE file in the repository for detailed terms and conditions.
+This project is distributed under the standard project license. Review the LICENSE file in the repository for detailed terms.
