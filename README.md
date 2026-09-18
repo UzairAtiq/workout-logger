@@ -1,4 +1,4 @@
-# Cinematic Workout Logger - Web and Hybrid Client
+# Cinematic Workout Logger 
 
 Cinematic Workout Logger is a minimalist fitness tracking application built for fast, friction-free logging during training sessions. It replaces standard virtual keyboards with an intuitive digit-by-digit vertical slider interface for weight and repetition entry. Lifters can rapidly record sets, track routine progress, and inspect historical performance metrics within a sleek, distraction-free environment.
 
