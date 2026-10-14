@@ -8,7 +8,8 @@ async function loadSessions(): Promise<WorkoutSession[]> {
   if (!value) return [];
   try {
     return JSON.parse(value) as WorkoutSession[];
-  } catch {
+  } catch (err) {
+    console.error('Failed to parse workout sessions from storage:', err);
     return [];
   }
 }
