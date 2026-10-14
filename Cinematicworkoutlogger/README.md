@@ -1,6 +1,8 @@
 
   # Cinematic Workout Logger
 
+  Live: [repix.uzairatiq.app](https://repix.uzairatiq.app/)
+
   This is a code bundle for Cinematic Workout Logger. The original project is available at https://www.figma.com/design/zsQmk7HlfF7yyrYMCstMRD/Cinematic-Workout-Logger.
 
   ## Running the code

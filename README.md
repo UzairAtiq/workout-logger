@@ -1,5 +1,7 @@
 # Workout Logger
 
+Live: [repix.uzairatiq.app](https://repix.uzairatiq.app/)
+
 Workout Logger is a fitness tracking platform designed for rapid workout logging during intense training sessions. It replaces standard virtual keyboards with an intuitive digit-by-digit vertical slider for recording weights and repetitions. The repository is organized into two primary folders: the web application and the native Android wrapper project.
 
 ## Repository Structure
