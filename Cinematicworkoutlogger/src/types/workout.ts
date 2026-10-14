@@ -15,3 +15,5 @@ export interface WorkoutSession {
   date: string; // ISO 8601 string
   exercises: Exercise[];
 }
+
+export type InputMode = 'exercise' | 'weight' | 'reps' | 'confirm' | 'history';
